@@ -8,6 +8,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     collapseCounter: 0,
+    //later use this to ake data persistance
+    // aandeelhouder:[window.localStorage.aandeelhouder]
     aandeelhouder: [
       {
         id: '1',
@@ -19,13 +21,13 @@ export default new Vuex.Store({
           BV_bestuuder: 'ja'
         },
         persoonlijk_gegevens: {
-          aanhef: 'mr',
+          aanhef: 'heer',
           voornaam: 'amir',
           achternaam: 'shakiba',
           geboortedatum: '27-04-1991',
           geboorteland: 'iran'
         },
-        contactgegevens: {
+        contact_gegevens: {
           telefoonnummer: '0646764532',
           email: 'amir@firm24.com',
           postcode: '1093BN',
@@ -46,7 +48,7 @@ export default new Vuex.Store({
           BV_bestuuder: 'ja'
         },
         persoonlijk_gegevens: {
-          aanhef: 'ms',
+          aanhef: 'mevrouw',
           voornaam: 'donia',
           achternaam: 'family',
           geboortedatum: '27-04-2001',
@@ -67,35 +69,6 @@ export default new Vuex.Store({
     ]
 
 
-    // images: [{
-    //     image: photo1,
-    //     alt: "photo_1"
-    //   },
-    //   {
-    //     image: photo2,
-    //     alt: "photo_2"
-    //   },
-    //   {
-    //     image: photo3,
-    //     alt: "photo_3"
-    //   },
-    //   {
-    //     image: photo4,
-    //     alt: "photo_4"
-    //   },
-    //   {
-    //     image: photo5,
-    //     alt: "photo_5"
-    //   },
-    //   {
-    //     image: photo6,
-    //     alt: "photo_6"
-    //   },
-    //   {
-    //     image: last,
-    //     alt: "last"
-    //   },
-    // ],
 
   },
 
@@ -107,6 +80,9 @@ export default new Vuex.Store({
     delete: (state, id) => {
       const newState = state.aandeelhouder.filter(item => item.id !== id)
       state.aandeelhouder = newState
+      window.localStorage.setItem('aandeelhouder', JSON.stringify(newState))
+
+      console.log(window.localStorage);
     }
   },
 

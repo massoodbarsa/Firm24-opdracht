@@ -1,11 +1,10 @@
 <template>
   <section>
-    <div></div>
-    <div class="buttons">
+    <!-- <div class="buttons">
       <b-button type="is-success" outlined @click="addCollapses"
         >Outlined</b-button
       >
-    </div>
+    </div> -->
     <section v-for="aandeelhouder in aandeelhouders" :key="aandeelhouder.title">
       <b-collapse class="card" animation="slide" aria-id="contentIdForA11y3">
         <template #trigger="props">
@@ -49,7 +48,7 @@ export default {
   },
   computed: {
     ...mapState({
-      collapseCounter: (state) => state.collapseCounter,
+      // collapseCounter: (state) => state.collapseCounter,
       aandeelhouders: (state) => state.aandeelhouder,
     }),
   },
