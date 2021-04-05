@@ -6,11 +6,8 @@ import VueResource from 'vue-resource'
 import store from './store/store'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome'
-import { faArrowRight,faStar} from '@fortawesome/free-solid-svg-icons'
 import Buefy from 'buefy'
 import 'buefy/dist/buefy.css'
-
-library.add(faArrowRight,faStar)
 
 Vue.component('fa-icon',FontAwesomeIcon)
 
