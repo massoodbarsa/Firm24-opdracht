@@ -10,6 +10,7 @@ export default new Vuex.Store({
     collapseCounter: 0,
     aandeelhouder: [
       {
+        id: '1',
         title: 'aandeelhouder 1',
         algemeen_gegevens: {
           aandeelhouderType: 'vennootschap',
@@ -22,19 +23,21 @@ export default new Vuex.Store({
           voornaam: 'amir',
           achternaam: 'shakiba',
           geboortedatum: '27-04-1991',
-          geboorteland:'iran'
+          geboorteland: 'iran'
         },
         contactgegevens: {
           telefoonnummer: '0646764532',
           email: 'amir@firm24.com',
           postcode: '1093BN',
           huisnummer: '21',
-          toevoeging:'f',
-          straatnaam:'straat',
-          olaatsnaam:'amsterdam'
+          toevoeging: 'f',
+          straatnaam: 'straat',
+          olaatsnaam: 'amsterdam'
         }
       }
-      , {
+      ,
+      {
+        id: '2',
         title: 'aandeelhouder 2',
         algemeen_gegevens: {
           aandeelhouderType: 'natuurlijke persoon',
@@ -47,16 +50,16 @@ export default new Vuex.Store({
           voornaam: 'donia',
           achternaam: 'family',
           geboortedatum: '27-04-2001',
-          geboorteland:'iran'
+          geboorteland: 'iran'
         },
         contactgegevens: {
           telefoonnummer: '0644564532',
           email: 'donia@firm24.com',
           postcode: '1033dN',
           huisnummer: '761',
-          toevoeging:'e',
-          straatnaam:'straat donia',
-          olaatsnaam:'amsterdam zuid-oost'
+          toevoeging: 'e',
+          straatnaam: 'straat donia',
+          olaatsnaam: 'amsterdam zuid-oost'
         }
 
 
@@ -101,18 +104,18 @@ export default new Vuex.Store({
       state.collapseCounter += 1
 
     },
-    cleanSlide: (state) => {
-      state.currentSlide = 0
-      state.slider = true
-
+    delete: (state, id) => {
+      const newState = state.aandeelhouder.filter(item => item.id !== id)
+      state.aandeelhouder = newState
     }
   },
+
   actions: {
     addCollapses: (context) => {
       context.commit("addCollapses")
     },
-    cleanSlide: (context) => {
-      context.commit("cleanSlide")
+    delete: (context, id) => {
+      context.commit("delete", id)
     },
   }
 
