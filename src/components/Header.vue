@@ -1,47 +1,22 @@
 <template>
-  <nav class="navbar">
-    <router-link
-      v-for="item in list"
-      :key="item.to"
-      :to="item.to"
-      class="nav-link"
-      @click.native="cleanSlide"
-    >
-      {{ item.title }}
-    </router-link>
+  <nav class="header">
+    <p>Firm24</p>
   </nav>
 </template>
 
-<script>
-import { mapActions } from "vuex";
-
-export default {
-  data() {
-    return {
-      list: [
-        { title: "Home", to: "/" },
-    
-      ],
-    };
-  },
-  methods: {
-    ...mapActions(["cleanSlide"]),
-  },
-};
-</script>
 
 <style lang="scss" scoped>
-.navbar {
-  background-color: rgb(39, 34, 34);
-  padding: 2rem;
+.header {
+  padding: 1.2rem;
   border-radius: 5px;
+  height: 300x;
+  background-color: slategray;
 }
-.nav-link {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  background: aqua;
-  margin: 2rem 1rem;
-  border-radius: 5px;
-  text-decoration: none;
-  padding: 5px;
+p {
+  color: aliceblue;
+  font-size: 30px;
+  font-family: Times, "Times New Roman", serif;
+  letter-spacing: 1.3px;
+  font-weight: bold;
 }
 </style>
