@@ -16,12 +16,12 @@
       </b-field>
 
       <b-field label="Voornaam" class="voornaam">
-        <b-input v-model="voornaam"></b-input>
+        <b-input v-model="voornaam" required></b-input>
       </b-field>
     </div>
     <section class="sections">
       <b-field label="Achternaam">
-        <b-input v-model="achternaam"></b-input>
+        <b-input v-model="achternaam" required></b-input>
       </b-field>
     </section>
     <section class="sections">

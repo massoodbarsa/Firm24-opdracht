@@ -2,12 +2,12 @@
   <div class="container">
     <section class="sections">
       <b-field label="Telefoonnummer">
-        <b-input v-model="tel"></b-input>
+        <b-input v-model="tel" required></b-input>
       </b-field>
     </section>
     <section class="sections">
       <b-field label="E-mailadres">
-        <b-input v-model="email" type="email"></b-input>
+        <b-input v-model="email" type="email" required></b-input>
       </b-field>
     </section>
     <section class="sections">
@@ -20,11 +20,11 @@
 
     <div class="adres">
       <b-field label="Postcode" class="adres__item">
-        <b-input v-model="postcode"></b-input>
+        <b-input v-model="postcode" required></b-input>
       </b-field>
 
       <b-field label="Huisnummer" class="adres__item">
-        <b-input v-model="huisnummer"></b-input>
+        <b-input v-model="huisnummer" required></b-input>
       </b-field>
       <b-field label="Toevoeging" class="adres__item">
         <b-input v-model="toevoeging"></b-input>
@@ -33,11 +33,11 @@
 
     <div class="adres">
       <b-field label="Straatnaam" class="adres__item">
-        <b-input v-model="straatnaam"></b-input>
+        <b-input v-model="straatnaam" required></b-input>
       </b-field>
 
       <b-field label="Plaatsnaam" class="adres__item">
-        <b-input v-model="plaatsnaam"></b-input>
+        <b-input v-model="plaatsnaam" required></b-input>
       </b-field>
     </div>
     <b-button type="is-success" class="save-btn btn__item" @click="handleSave"
