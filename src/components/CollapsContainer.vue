@@ -1,10 +1,5 @@
 <template>
   <section>
-    <!-- <div class="buttons">
-      <b-button type="is-success" outlined @click="addCollapses"
-        >Outlined</b-button
-      >
-    </div> -->
     <section v-for="aandeelhouder in aandeelhouders" :key="aandeelhouder.title">
       <b-collapse class="card" animation="slide" aria-id="contentIdForA11y3">
         <template #trigger="props">
@@ -17,7 +12,7 @@
               {{ aandeelhouder.title }}
             </p>
             <a class="card-header-icon">
-              <div class="delete-btn" @click="handleDelete(aandeelhouder.id)">
+              <div class="delete-btn" @click="showModal">
                 <p>Verwijder</p>
                 <b-icon icon="delete"></b-icon>
               </div>
@@ -28,23 +23,37 @@
         </template>
         <StepperVue :aandeelhouder="aandeelhouder" />
       </b-collapse>
+
+      <!-- <section v-if="isModalVisible"> -->
+      <Modal
+        v-show="isModalVisible"
+        @close="closeModal"
+        @del="handleDelete(aandeelhouder.id)"
+        :title="aandeelhouder.title"
+        :voornaam="aandeelhouder.persoonlijk_gegevens.voornaam"
+        :achternaam="aandeelhouder.persoonlijk_gegevens.achternaam"
+      />
+      <!-- </section> -->
     </section>
   </section>
 </template>
 
 <script>
 import { mapActions, mapState } from "vuex";
+import Modal from "./Modal.vue";
 import StepperVue from "./Stepper.vue";
-// console.log(this.collapseCounter);
+
 export default {
   data() {
     return {
       isOpen: 0,
+      isModalVisible: false,
       // collapses: [],
     };
   },
   components: {
     StepperVue,
+    Modal,
   },
   computed: {
     ...mapState({
@@ -53,9 +62,18 @@ export default {
     }),
   },
   methods: {
-    ...mapActions(["addCollapses",'delete']),
+    ...mapActions(["addCollapses", "delete"]),
+
+    showModal() {
+      this.isModalVisible = true;
+    },
+    closeModal() {
+      this.isModalVisible = false;
+    },
+
     handleDelete(id) {
-      this.delete(id)
+      this.delete(id);
+      this.isModalVisible = false;
     },
   },
 };
@@ -70,5 +88,14 @@ export default {
   p {
     margin-right: 20px;
   }
+}
+
+.modal {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: slategrey;
 }
 </style>

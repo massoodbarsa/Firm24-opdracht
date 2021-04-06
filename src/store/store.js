@@ -83,7 +83,18 @@ export default new Vuex.Store({
       window.localStorage.setItem('aandeelhouder', JSON.stringify(newState))
 
       console.log(window.localStorage);
+    },
+    addAandeelhouder: (state, payload) => {
+
+
+      console.log(payload);
+      // const newState = state.aandeelhouder.filter(item => item.id !== id)
+      // state.aandeelhouder = newState
+      // window.localStorage.setItem('aandeelhouder', JSON.stringify(newState))
+
+      // console.log(window.localStorage);
     }
+
   },
 
   actions: {
@@ -92,6 +103,9 @@ export default new Vuex.Store({
     },
     delete: (context, id) => {
       context.commit("delete", id)
+    },
+    addAandeelhouder: (context, payload) => {
+      context.commit("addAandeelhouder", payload)
     },
   }
 

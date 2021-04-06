@@ -34,7 +34,6 @@
         >
         </b-datepicker>
       </b-field>
-      {{ geboortedatum }}
     </section>
 
     <section class="sections">
@@ -46,32 +45,85 @@
         </b-select>
       </b-field>
     </section>
-
-    {{ geboorteland }}
+    {{ id }}
   </div>
 </template>
 
 <script>
 import axios from "axios";
+// import { mapActions } from "vuex";
 
 export default {
   data() {
     return {
+      // id: null,
       data: ["heer", "mevrouw"],
       lands: [],
-      aanhef: "heer",
-      voornaam: "aghhamid",
-      achternaam: "shakiba",
-      geboortedatum: "",
+      aanhef: "",
+      voornaam: "",
+      achternaam: "",
+      geboortedatum: [],
       geboorteland: "",
     };
   },
-  props: ["persoonlijkGegevens"],
+  props: ["persoonlijkGegevens", "id"],
   mounted() {
     axios
       .get("https://restcountries.eu/rest/v2/all")
       .then((response) => (this.lands = response.data));
+
+    //Each component has a unique id which can be accessed as this._uid
+    // this.id = this._uid;
   },
+  created() {
+    console.log(window.localStorage.getItem("aandeelhouder"));
+  },
+  watch: {
+    aanhef: function () {
+      var obj = {
+        aanhef: this.aanhef,
+      };
+      window.localStorage.setItem("aandeelhouder", JSON.stringify(obj));
+    },
+      voornaam: function () {
+      var obj = {
+        voornaam: this.voornaam,
+      };
+      const local = window.localStorage.getItem("aandeelhouder")
+     
+      window.localStorage.setItem("aandeelhouder",JSON.stringify( Object.assign(...local,obj)));
+    },
+  },
+  // computed: {
+  //   addToLocalStroage: function () {
+  //     var obj = {
+  //       id: this.id,
+  //       aanhef: this.aanhef,
+  //       voornaam: this.voornaam,
+  //       achternaam: this.achternaam,
+  //       geboortedatum: this.geboortedatum,
+  //       geboorteland: this.geboorteland,
+  //     };
+  //     window.localStorage.setItem("aandeelhouder", JSON.stringify(obj));
+  //     console.log(window.localStorage);
+  //     return obj;
+  //   },
+  // },
+
+  // methods: {
+  //   ...mapActions(["addAandeelhouder"]),
+  //   handleAdd() {
+  //     this.addAandeelhouder({
+  //       persoonlijk_gegevens: {
+  //         aanhef: this.aanhef,
+  //         voornaam: this.voornaam,
+  //         achternaam: this.achternaam,
+  //         geboortedatum: this.geboortedatum,
+  //         geboorteland: this.geboortedatum,
+  //       },
+  //     });
+  //   },
+  // },
 };
 </script>
 
@@ -84,8 +136,9 @@ export default {
   justify-content: center;
   align-items: center;
   align-items: flex-start;
+  text-align: left;
+
   &__header {
-    text-align: left;
     margin-bottom: 30px;
   }
 }
@@ -103,6 +156,7 @@ export default {
   margin-bottom: 20px;
   padding: 5px;
   width: 50%;
+  text-align: left;
 }
 .aanhef-voornaam {
   width: calc(50% - 5px);

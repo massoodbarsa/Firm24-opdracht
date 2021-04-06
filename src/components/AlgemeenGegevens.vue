@@ -107,20 +107,22 @@
           </b-radio>
         </b-field>
       </div>
-    </section>  </div>
+    </section>  
+    {{id}}
+    </div>
 </template>
 
 <script>
 export default {
   data() {
     return {
-      aandeelhouderType: "Vennootschap",
-      taalMachtigheid: "ja",
-      woonachtig_nederland: "ja",
-      BV_bestuuder:'ja'
+      aandeelhouderType: "",
+      taalMachtigheid: "",
+      woonachtig_nederland: "",
+      BV_bestuuder:''
     };
   },
-  props: ["alegemeenGegevens"],
+  props: ["alegemeenGegevens","id"],
 };
 </script>
 

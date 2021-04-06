@@ -14,6 +14,8 @@
         <!-- <div class="title has-text-centered">Algemeen gegevens</div> -->
         <AlgemeenGegevens
           :alegemeenGegevens="aandeelhouder.algemeen_gegevens"
+          :id="id"
+          :addData='addToLocalStroage'
         />
       </b-step-item>
 
@@ -21,12 +23,16 @@
         <!-- <div class="title has-text-centered">Persoonlijk gegevens</div> -->
         <PersoonlijkGegevens
           :persoonlijkGegevens="aandeelhouder.persoonlijk_gegevens"
+          :id="id"
         />
       </b-step-item>
 
       <b-step-item step="3" label="ContactGegevens">
         <!-- <div class="title has-text-centered">Contact gegevens</div> -->
-        <ContactGegevens :contsctGegevens="aandeelhouder.contact_gegevens" />
+        <ContactGegevens
+          :contsctGegevens="aandeelhouder.contact_gegevens"
+          :id="id"
+        />
       </b-step-item>
 
       <template v-if="customNavigation" #navigation="{ previous, next }">
@@ -66,6 +72,7 @@ export default {
   data() {
     return {
       activeStep: 0,
+      id: null,
 
       showSocial: false,
       isAnimated: true,
@@ -87,6 +94,20 @@ export default {
     PersoonlijkGegevens,
     AlgemeenGegevens,
     ContactGegevens,
+  },
+  mounted() {
+    //Each component has a unique id which can be accessed as this._uid
+    this.id = this._uid;
+  },
+
+  methods: {
+    addToLocalStroage() {
+
+
+   
+            // window.localStorage.setItem("aandeelhouder", JSON.stringify(obj));
+
+    },
   },
 };
 </script>
