@@ -111,16 +111,16 @@ export default {
       if (arrItems.length === arr.length) {
         return true;
       } else {
-        // const notif = this.$buefy.notification.open({
-        //   duration: 5000,
-        //   message: `Something's not good `,
-        //   position: "is-bottom-right",
-        //   type: "is-danger",
-        //   hasIcon: true,
-        // });
-        // notif.$on("close", () => {
-        //   this.$buefy.notification.open("Custom notification closed!");
-        // });
+        const notif = this.$buefy.notification.open({
+          duration: 5000,
+          message: `Something's not good `,
+          position: "is-bottom-right",
+          type: "is-danger",
+          hasIcon: true,
+        });
+        notif.$on("close", () => {
+          this.$buefy.notification.open("Custom notification closed!");
+        });
         return false;
       }
     },
