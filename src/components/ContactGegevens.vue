@@ -80,6 +80,7 @@ export default {
 
     handleSave() {
       this.$emit("addToLocalStorage", this.id);
+      this.$emit("addItemToState", this.id);
     },
     handleAddNewItem() {
       this.addNewItem();

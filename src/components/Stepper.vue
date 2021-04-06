@@ -34,6 +34,7 @@
           @addData="collectData"
           @addToLocalStorage="addToLocalStorage"
           @resetStepper="resetStepper"
+          @addItemToState="addItemToState"
         />
       </b-step-item>
 
@@ -67,6 +68,7 @@
 import PersoonlijkGegevens from "./PersoonlijkGegevens.vue";
 import AlgemeenGegevens from "./AlgemeenGegevens.vue";
 import ContactGegevens from "./ContactGegevens.vue";
+import { mapActions } from "vuex";
 
 export default {
   data() {
@@ -98,15 +100,24 @@ export default {
   mounted() {
     //Each component has a unique id which can be accessed as this._uid
     this.id = this._uid;
+    
   },
 
   methods: {
+    ...mapActions(["fillState"]),
+
     resetStepper() {
-      this.activeStep=0
+      this.activeStep = 0;
     },
-  
+
     collectData(value) {
       Object.assign(this.dataSet, value);
+    },
+
+    addItemToState(id) {
+      const newData = Object.assign(this.dataSet, { id: id });
+      this.fillState(newData);
+      console.log(this.aandeelhouder);
     },
 
     addToLocalStorage(id) {

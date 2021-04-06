@@ -30,9 +30,7 @@
         @del="handleDelete(aandeelhouder.id)"
         :aandeelhouder="aandeelhouder"
         :id="aandeelhouder.id"
-      
       />
-   
     </section>
   </section>
 </template>
@@ -56,7 +54,7 @@ export default {
   },
 
   created() {
-    this.addLocalStorageToState()
+    // this.addLocalStorageToState();
   },
   computed: {
     ...mapState({
@@ -79,9 +77,9 @@ export default {
       this.isModalVisible = false;
     },
 
-      addLocalStorageToState() {
-      this.fillState(localStorage)
-    },
+    // addLocalStorageToState() {
+    //   this.fillState(localStorage);
+    // },
   },
 };
 </script>

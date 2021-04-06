@@ -66,7 +66,8 @@ export default new Vuex.Store({
     },
 
     fillState: (state, payload) => {
-      console.log(payload);
+
+      state.aandeelhouder.push(payload)
       // state.aandeelhouder.push(payload)
       // state.aandeelhouder=payload
       // const newState = state.aandeelhouder.filter(item => item.id !== id)
@@ -74,8 +75,8 @@ export default new Vuex.Store({
       // window.localStorage.setItem('aandeelhouder', JSON.stringify(newState))
 
       // console.log(window.localStorage);
-    }
-    ,
+    },
+
     addNewItem: (state) => {
       console.log(state);
       state.aandeelhouder.push({})
