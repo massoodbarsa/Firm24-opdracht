@@ -10,7 +10,7 @@
         <header class="modal-header" id="modalTitle">
           <slot name="header"> <h1>Let op!</h1></slot>
           <p>
-            Weet je zeker dat je {{ title }}, {{ voornaam }} {{ achternaam }},
+            Weet je zeker dat je {{ aandeelhouder.title }}, {{ aandeelhouder.voornaam }} {{ aandeelhouder.achternaam }},
             wilt verwijderen als aandeelhouder?
           </p>
         </header>
@@ -30,7 +30,7 @@
 <script>
 export default {
   name: "Modal",
-  props: ["title", "voornaam", "achternaam"],
+  props: ["aandeelhouder"],
   methods: {
     close() {
       this.$emit("close");
@@ -66,6 +66,7 @@ export default {
   margin: 100px auto;
   opacity: 1;
   z-index: 1000;
+  border-radius: 5px;
 }
 
 .modal-header,

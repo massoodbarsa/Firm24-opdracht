@@ -24,16 +24,14 @@
         <StepperVue :aandeelhouder="aandeelhouder" />
       </b-collapse>
 
-      <!-- <section v-if="isModalVisible"> -->
       <Modal
         v-show="isModalVisible"
         @close="closeModal"
         @del="handleDelete(aandeelhouder.id)"
-        :title="aandeelhouder.title"
-        :voornaam="aandeelhouder.persoonlijk_gegevens.voornaam"
-        :achternaam="aandeelhouder.persoonlijk_gegevens.achternaam"
+        :aandeelhouder="aandeelhouder"
+      
       />
-      <!-- </section> -->
+     
     </section>
   </section>
 </template>

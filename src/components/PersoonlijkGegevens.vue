@@ -45,7 +45,6 @@
         </b-select>
       </b-field>
     </section>
-    {{ id }}
   </div>
 </template>
 
@@ -54,19 +53,20 @@ import axios from "axios";
 // import { mapActions } from "vuex";
 
 export default {
+    props: ["persoonlijkGegevens", "id"],
+
   data() {
     return {
       // id: null,
       data: ["heer", "mevrouw"],
       lands: [],
-      aanhef: "",
-      voornaam: "",
-      achternaam: "",
+      aanhef:this.persoonlijkGegevens.aanhef,
+      voornaam: this.persoonlijkGegevens.voornaam,
+      achternaam: this.persoonlijkGegevens.achternaam,
       geboortedatum: [],
-      geboorteland: "",
+      geboorteland: this.persoonlijkGegevens.geboorteland
     };
   },
-  props: ["persoonlijkGegevens", "id"],
   mounted() {
     axios
       .get("https://restcountries.eu/rest/v2/all")
@@ -76,22 +76,24 @@ export default {
     // this.id = this._uid;
   },
   created() {
-    console.log(window.localStorage.getItem("aandeelhouder"));
+    const test =window.localStorage.getItem("aandeelhouder")
+    console.log(test);
   },
   watch: {
     aanhef: function () {
-      var obj = {
-        aanhef: this.aanhef,
-      };
-      window.localStorage.setItem("aandeelhouder", JSON.stringify(obj));
+      this.$emit("addData", { aanhef: this.aanhef });
     },
-      voornaam: function () {
-      var obj = {
-        voornaam: this.voornaam,
-      };
-      const local = window.localStorage.getItem("aandeelhouder")
-     
-      window.localStorage.setItem("aandeelhouder",JSON.stringify( Object.assign(...local,obj)));
+    voornaam: function () {
+      this.$emit("addData", { voornaam: this.voornaam });
+    },
+    achternaam: function () {
+      this.$emit("addData", { achternaam: this.achternaam });
+    },
+    geboortedatum: function () {
+      this.$emit("addData", { geboortedatum: this.geboortedatum });
+    },
+    geboorteland: function () {
+      this.$emit("addData", { geboorteland: this.geboorteland });
     },
   },
   // computed: {

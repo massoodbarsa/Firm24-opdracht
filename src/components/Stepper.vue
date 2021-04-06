@@ -13,25 +13,28 @@
       <b-step-item step="1" label="Algemeen Gegevens">
         <!-- <div class="title has-text-centered">Algemeen gegevens</div> -->
         <AlgemeenGegevens
-          :alegemeenGegevens="aandeelhouder.algemeen_gegevens"
+          :alegemeenGegevens="aandeelhouder"
           :id="id"
-          :addData='addToLocalStroage'
+          @addData="collectData"
         />
       </b-step-item>
 
       <b-step-item step="2" label="PersoonlijkGegevens">
         <!-- <div class="title has-text-centered">Persoonlijk gegevens</div> -->
         <PersoonlijkGegevens
-          :persoonlijkGegevens="aandeelhouder.persoonlijk_gegevens"
+          :persoonlijkGegevens="aandeelhouder"
           :id="id"
+          @addData="collectData"
         />
       </b-step-item>
 
       <b-step-item step="3" label="ContactGegevens">
         <!-- <div class="title has-text-centered">Contact gegevens</div> -->
         <ContactGegevens
-          :contsctGegevens="aandeelhouder.contact_gegevens"
+          :contsctGegevens="aandeelhouder"
           :id="id"
+          @addData="collectData"
+          @addToLocalStorage="addToLocalStorage"
         />
       </b-step-item>
 
@@ -58,8 +61,6 @@
         </b-button>
       </template>
     </b-steps>
-    <!-- {{ aandeelhouder }} -->
-    {{ activeStep }}
   </div>
 </template>
 
@@ -87,6 +88,7 @@ export default {
       nextIcon: "chevron-right",
       labelPosition: "bottom",
       mobileMode: "minimalist",
+      dataSet: {},
     };
   },
   props: ["aandeelhouder"],
@@ -101,12 +103,18 @@ export default {
   },
 
   methods: {
-    addToLocalStroage() {
+    collectData(value) {
+      Object.assign(this.dataSet, value);
+    },
 
-
-   
-            // window.localStorage.setItem("aandeelhouder", JSON.stringify(obj));
-
+    addToLocalStorage() {
+    
+      const local = window.localStorage.getItem("aandeelhouder");
+      const newData = Object.assign(this.dataSet, { id: this.id });
+      if (local) {
+        console.log(local);
+      }
+      window.localStorage.setItem("aandeelhouder", JSON.stringify(newData));
     },
   },
 };

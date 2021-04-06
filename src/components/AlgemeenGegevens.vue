@@ -80,9 +80,7 @@
       </div>
     </section>
 
-
-
- <section class="questions">
+    <section class="questions">
       <p class="questions__title">
         Is deze aandeelhouder bestuurder?
         <b-tooltip
@@ -97,32 +95,45 @@
       </p>
       <div class="radio-container">
         <b-field>
-          <b-radio v-model="woonachtig_nederland" native-value="ja">
-            Ja
-          </b-radio>
+          <b-radio v-model="BV_bestuuder" native-value="ja"> Ja </b-radio>
         </b-field>
         <b-field>
-          <b-radio v-model="woonachtig_nederland" native-value="nee">
-            Nee
-          </b-radio>
+          <b-radio v-model="BV_bestuuder" native-value="nee"> Nee </b-radio>
         </b-field>
       </div>
-    </section>  
-    {{id}}
-    </div>
+    </section>
+  </div>
 </template>
 
 <script>
 export default {
+  props: ["alegemeenGegevens", "id"],
+
   data() {
     return {
-      aandeelhouderType: "",
-      taalMachtigheid: "",
-      woonachtig_nederland: "",
-      BV_bestuuder:''
+      aandeelhouderType: this.alegemeenGegevens.aandeelhouderType,
+      taalMachtigheid: this.alegemeenGegevens.taalMachtigheid,
+      woonachtig_nederland: this.alegemeenGegevens.woonachtig_nederland,
+      BV_bestuuder: this.alegemeenGegevens.BV_bestuuder,
     };
   },
-  props: ["alegemeenGegevens","id"],
+
+  watch: {
+    aandeelhouderType: function () {
+      this.$emit("addData", { aandeelhouderType: this.aandeelhouderType });
+    },
+    taalMachtigheid: function () {
+      this.$emit("addData", { taalMachtigheid: this.taalMachtigheid });
+    },
+    woonachtig_nederland: function () {
+      this.$emit("addData", {
+        woonachtig_nederland: this.woonachtig_nederland,
+      });
+    },
+    BV_bestuuder: function () {
+      this.$emit("addData", { BV_bestuuder: this.BV_bestuuder });
+    },
+  },
 };
 </script>
 
@@ -131,9 +142,8 @@ export default {
 .container {
   display: flex;
   flex-direction: column;
-  align-items:flex-start;
-    padding-top: 50px;
-
+  align-items: flex-start;
+  padding-top: 50px;
 }
 .questions {
   padding: 10px;
