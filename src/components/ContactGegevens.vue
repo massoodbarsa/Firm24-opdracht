@@ -26,7 +26,7 @@
       <b-field label="Huisnummer" class="adres__item">
         <b-input v-model="huisnummer" required></b-input>
       </b-field>
-      <b-field label="Toevoeging" class="adres__item" >
+      <b-field label="Toevoeging" class="adres__item">
         <b-input v-model="toevoeging" required></b-input>
       </b-field>
     </div>
@@ -40,11 +40,7 @@
         <b-input v-model="plaatsnaam" required></b-input>
       </b-field>
     </div>
-    <b-button
-      type="is-success"
-      class="save-btn btn__item"
-      @click="handleSave"
-      :disabled="!validation"
+    <b-button type="is-success" class="save-btn btn__item" @click="handleSave"
       >Save</b-button
     >
 
@@ -83,20 +79,6 @@ export default {
     ...mapActions(["addNewItem"]),
 
     handleSave() {
-      this.$emit("addToLocalStorage", this.id);
-      this.$emit("addItemToState", this.id);
-    },
-    handleAddNewItem() {
-      this.addNewItem();
-      this.$emit("resetStepper");
-    },
-
-    handleCancel() {
-      this.$emit("resetStepper");
-    },
-  },
-  computed: {
-    validation() {
       const arr = [];
       arr.push(
         this.tel,
@@ -109,6 +91,8 @@ export default {
       );
       const arrItems = arr.filter((i) => i.length !== 0);
       if (arrItems.length === arr.length) {
+        this.$emit("addToLocalStorage", this.id);
+        this.$emit("addItemToState", this.id);
         return true;
       } else {
         const notif = this.$buefy.notification.open({
@@ -123,6 +107,14 @@ export default {
         });
         return false;
       }
+    },
+    handleAddNewItem() {
+      this.addNewItem();
+      this.$emit("resetStepper");
+    },
+
+    handleCancel() {
+      this.$emit("resetStepper");
     },
   },
 
