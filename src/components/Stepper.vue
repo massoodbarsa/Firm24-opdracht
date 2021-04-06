@@ -151,4 +151,11 @@ export default {
   letter-spacing: normal;
   color: #194379;
 }
+
+
+// .step-item :active
+// {
+//   border: 1px solid red;
+
+// }
 </style>

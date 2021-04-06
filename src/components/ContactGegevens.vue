@@ -26,8 +26,8 @@
       <b-field label="Huisnummer" class="adres__item">
         <b-input v-model="huisnummer" required></b-input>
       </b-field>
-      <b-field label="Toevoeging" class="adres__item">
-        <b-input v-model="toevoeging"></b-input>
+      <b-field label="Toevoeging" class="adres__item" >
+        <b-input v-model="toevoeging" required></b-input>
       </b-field>
     </div>
 
@@ -40,7 +40,11 @@
         <b-input v-model="plaatsnaam" required></b-input>
       </b-field>
     </div>
-    <b-button type="is-success" class="save-btn btn__item" @click="handleSave"
+    <b-button
+      type="is-success"
+      class="save-btn btn__item"
+      @click="handleSave"
+      :disabled="!validation"
       >Save</b-button
     >
 
@@ -55,6 +59,7 @@
         >
       </div>
     </section>
+    {{ validation }}
   </div>
 </template>
 
@@ -89,6 +94,36 @@ export default {
 
     handleCancel() {
       this.$emit("resetStepper");
+    },
+  },
+  computed: {
+    validation() {
+      const arr = [];
+      arr.push(
+        this.tel,
+        this.email,
+        this.postcode,
+        this.huisnummer,
+        this.toevoeging,
+        this.straatnaam,
+        this.plaatsnaam
+      );
+      const arrItems = arr.filter((i) => i.length !== 0);
+      if (arrItems.length === arr.length) {
+        return true;
+      } else {
+        const notif = this.$buefy.notification.open({
+          duration: 5000,
+          message: `Something's not good `,
+          position: "is-bottom-right",
+          type: "is-danger",
+          hasIcon: true,
+        });
+        notif.$on("close", () => {
+          this.$buefy.notification.open("Custom notification closed!");
+        });
+        return false;
+      }
     },
   },
 
