@@ -29,9 +29,10 @@
         @close="closeModal"
         @del="handleDelete(aandeelhouder.id)"
         :aandeelhouder="aandeelhouder"
+        :id="aandeelhouder.id"
       
       />
-     
+   
     </section>
   </section>
 </template>
@@ -53,6 +54,10 @@ export default {
     StepperVue,
     Modal,
   },
+
+  created() {
+    this.addLocalStorageToState()
+  },
   computed: {
     ...mapState({
       // collapseCounter: (state) => state.collapseCounter,
@@ -60,7 +65,7 @@ export default {
     }),
   },
   methods: {
-    ...mapActions(["addCollapses", "delete"]),
+    ...mapActions(["fillState", "delete"]),
 
     showModal() {
       this.isModalVisible = true;
@@ -72,6 +77,10 @@ export default {
     handleDelete(id) {
       this.delete(id);
       this.isModalVisible = false;
+    },
+
+      addLocalStorageToState() {
+      this.fillState(localStorage)
     },
   },
 };

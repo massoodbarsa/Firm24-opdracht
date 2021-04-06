@@ -14,7 +14,6 @@
         <!-- <div class="title has-text-centered">Algemeen gegevens</div> -->
         <AlgemeenGegevens
           :alegemeenGegevens="aandeelhouder"
-          :id="id"
           @addData="collectData"
         />
       </b-step-item>
@@ -23,7 +22,6 @@
         <!-- <div class="title has-text-centered">Persoonlijk gegevens</div> -->
         <PersoonlijkGegevens
           :persoonlijkGegevens="aandeelhouder"
-          :id="id"
           @addData="collectData"
         />
       </b-step-item>
@@ -35,6 +33,7 @@
           :id="id"
           @addData="collectData"
           @addToLocalStorage="addToLocalStorage"
+          @resetStepper="resetStepper"
         />
       </b-step-item>
 
@@ -74,7 +73,6 @@ export default {
     return {
       activeStep: 0,
       id: null,
-
       showSocial: false,
       isAnimated: true,
       isRounded: true,
@@ -103,18 +101,25 @@ export default {
   },
 
   methods: {
+    resetStepper() {
+      this.activeStep=0
+    },
+  
     collectData(value) {
       Object.assign(this.dataSet, value);
     },
 
-    addToLocalStorage() {
-    
-      const local = window.localStorage.getItem("aandeelhouder");
-      const newData = Object.assign(this.dataSet, { id: this.id });
-      if (local) {
-        console.log(local);
+    addToLocalStorage(id) {
+      console.log(id);
+      const local = window.localStorage.getItem(`aandeelhouder${id}`);
+      console.log(!local);
+      const newData = Object.assign(this.dataSet, { id: id });
+      if (!local) {
+        window.localStorage.setItem(
+          `aandeelhouder${id}`,
+          JSON.stringify(newData)
+        );
       }
-      window.localStorage.setItem("aandeelhouder", JSON.stringify(newData));
     },
   },
 };

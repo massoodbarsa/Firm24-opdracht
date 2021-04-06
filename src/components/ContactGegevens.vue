@@ -47,14 +47,20 @@
     <section class="sections">
       <p class="title">Wil je nog een aandeelhouder toevoegen?</p>
       <div class="btn">
-        <b-button type="is-success" class="btn__item" @>Ja</b-button>
-        <b-button type="is-danger" class="btn__item">Nee</b-button>
+        <b-button type="is-success" class="btn__item" @click="handleAddNewItem"
+          >Ja</b-button
+        >
+        <b-button type="is-danger" class="btn__item" @click="handleCancel"
+          >Nee</b-button
+        >
       </div>
     </section>
   </div>
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   props: ["contsctGegevens", "id"],
 
@@ -70,8 +76,18 @@ export default {
     };
   },
   methods: {
+    ...mapActions(["addNewItem"]),
+
     handleSave() {
-      this.$emit("addToLocalStorage");
+      this.$emit("addToLocalStorage", this.id);
+    },
+    handleAddNewItem() {
+      this.addNewItem();
+      this.$emit("resetStepper");
+    },
+
+    handleCancel() {
+      this.$emit("resetStepper");
     },
   },
 

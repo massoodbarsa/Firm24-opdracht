@@ -7,8 +7,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    //later use this to ake data persistance
-    // aandeelhouder:[window.localStorage.aandeelhouder]
+
     aandeelhouder: [
       {
         id: '1',
@@ -65,16 +64,22 @@ export default new Vuex.Store({
 
       console.log(window.localStorage);
     },
-    addAandeelhouder: (state, payload) => {
 
-
+    fillState: (state, payload) => {
       console.log(payload);
+      // state.aandeelhouder.push(payload)
+      // state.aandeelhouder=payload
       // const newState = state.aandeelhouder.filter(item => item.id !== id)
       // state.aandeelhouder = newState
       // window.localStorage.setItem('aandeelhouder', JSON.stringify(newState))
 
       // console.log(window.localStorage);
     }
+    ,
+    addNewItem: (state) => {
+      console.log(state);
+      state.aandeelhouder.push({})
+    },
 
   },
 
@@ -83,8 +88,11 @@ export default new Vuex.Store({
     delete: (context, id) => {
       context.commit("delete", id)
     },
-    addAandeelhouder: (context, payload) => {
-      context.commit("addAandeelhouder", payload)
+    fillState: (context, payload) => {
+      context.commit("fillState", payload)
+    },
+    addNewItem: (context, payload) => {
+      context.commit("addNewItem", payload)
     },
   }
 

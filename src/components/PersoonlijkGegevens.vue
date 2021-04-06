@@ -53,18 +53,18 @@ import axios from "axios";
 // import { mapActions } from "vuex";
 
 export default {
-    props: ["persoonlijkGegevens", "id"],
+  props: ["persoonlijkGegevens"],
 
   data() {
     return {
       // id: null,
       data: ["heer", "mevrouw"],
       lands: [],
-      aanhef:this.persoonlijkGegevens.aanhef,
+      aanhef: this.persoonlijkGegevens.aanhef,
       voornaam: this.persoonlijkGegevens.voornaam,
       achternaam: this.persoonlijkGegevens.achternaam,
       geboortedatum: [],
-      geboorteland: this.persoonlijkGegevens.geboorteland
+      geboorteland: this.persoonlijkGegevens.geboorteland,
     };
   },
   mounted() {
@@ -76,8 +76,7 @@ export default {
     // this.id = this._uid;
   },
   created() {
-    const test =window.localStorage.getItem("aandeelhouder")
-    console.log(test);
+    // console.log(JSON.parse(window.localStorage));
   },
   watch: {
     aanhef: function () {

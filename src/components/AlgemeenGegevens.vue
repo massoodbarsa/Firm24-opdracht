@@ -102,12 +102,13 @@
         </b-field>
       </div>
     </section>
+    {{alegemeenGegevens.aandeelhouderType}}
   </div>
 </template>
 
 <script>
 export default {
-  props: ["alegemeenGegevens", "id"],
+  props: ["alegemeenGegevens"],
 
   data() {
     return {

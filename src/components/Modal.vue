@@ -23,6 +23,7 @@
             >Ja, verwijder</b-button
           >
         </section>
+
       </div>
     </div>
   </transition>
@@ -30,7 +31,7 @@
 <script>
 export default {
   name: "Modal",
-  props: ["aandeelhouder"],
+  props: ["aandeelhouder","id"],
   methods: {
     close() {
       this.$emit("close");
