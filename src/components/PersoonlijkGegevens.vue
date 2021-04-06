@@ -71,13 +71,8 @@ export default {
     axios
       .get("https://restcountries.eu/rest/v2/all")
       .then((response) => (this.lands = response.data));
+  },
 
-    //Each component has a unique id which can be accessed as this._uid
-    // this.id = this._uid;
-  },
-  created() {
-    // console.log(JSON.parse(window.localStorage));
-  },
   watch: {
     aanhef: function () {
       this.$emit("addData", { aanhef: this.aanhef });
@@ -95,39 +90,8 @@ export default {
       this.$emit("addData", { geboorteland: this.geboorteland });
     },
   },
-  // computed: {
-  //   addToLocalStroage: function () {
-  //     var obj = {
-  //       id: this.id,
-  //       aanhef: this.aanhef,
-  //       voornaam: this.voornaam,
-  //       achternaam: this.achternaam,
-  //       geboortedatum: this.geboortedatum,
-  //       geboorteland: this.geboorteland,
-  //     };
-  //     window.localStorage.setItem("aandeelhouder", JSON.stringify(obj));
-  //     console.log(window.localStorage);
-  //     return obj;
-  //   },
-  // },
-
-  // methods: {
-  //   ...mapActions(["addAandeelhouder"]),
-  //   handleAdd() {
-  //     this.addAandeelhouder({
-  //       persoonlijk_gegevens: {
-  //         aanhef: this.aanhef,
-  //         voornaam: this.voornaam,
-  //         achternaam: this.achternaam,
-  //         geboortedatum: this.geboortedatum,
-  //         geboorteland: this.geboortedatum,
-  //       },
-  //     });
-  //   },
-  // },
 };
 </script>
-
 
 <style scoped lang="scss">
 .container {

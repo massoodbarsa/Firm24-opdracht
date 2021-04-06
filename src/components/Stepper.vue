@@ -11,7 +11,6 @@
       :mobile-mode="mobileMode"
     >
       <b-step-item step="1" label="Algemeen Gegevens">
-        <!-- <div class="title has-text-centered">Algemeen gegevens</div> -->
         <AlgemeenGegevens
           :alegemeenGegevens="aandeelhouder"
           @addData="collectData"
@@ -19,7 +18,6 @@
       </b-step-item>
 
       <b-step-item step="2" label="PersoonlijkGegevens">
-        <!-- <div class="title has-text-centered">Persoonlijk gegevens</div> -->
         <PersoonlijkGegevens
           :persoonlijkGegevens="aandeelhouder"
           @addData="collectData"
@@ -27,7 +25,6 @@
       </b-step-item>
 
       <b-step-item step="3" label="ContactGegevens">
-        <!-- <div class="title has-text-centered">Contact gegevens</div> -->
         <ContactGegevens
           :contsctGegevens="aandeelhouder"
           :id="id"
@@ -100,7 +97,6 @@ export default {
   mounted() {
     //Each component has a unique id which can be accessed as this._uid
     this.id = this._uid;
-    
   },
 
   methods: {
@@ -146,7 +142,6 @@ export default {
   margin-top: 30px;
   width: 591px;
   height: 28px;
-  // margin: 6px 0 0 117px;
   font-family: FiraSans;
   font-size: 24px;
   font-weight: 500;

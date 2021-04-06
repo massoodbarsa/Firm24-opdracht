@@ -45,7 +45,6 @@ export default {
     return {
       isOpen: 0,
       isModalVisible: false,
-      // collapses: [],
     };
   },
   components: {
@@ -58,7 +57,6 @@ export default {
   },
   computed: {
     ...mapState({
-      // collapseCounter: (state) => state.collapseCounter,
       aandeelhouders: (state) => state.aandeelhouder,
     }),
   },

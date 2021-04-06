@@ -73,8 +73,6 @@ export default new Vuex.Store({
       // const newState = state.aandeelhouder.filter(item => item.id !== id)
       // state.aandeelhouder = newState
       // window.localStorage.setItem('aandeelhouder', JSON.stringify(newState))
-
-      // console.log(window.localStorage);
     },
 
     addNewItem: (state) => {

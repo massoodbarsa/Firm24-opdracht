@@ -4,7 +4,6 @@
   </nav>
 </template>
 
-
 <style lang="scss" scoped>
 .header {
   padding: 1.2rem;
